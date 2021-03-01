@@ -1,0 +1,179 @@
+==> HTTP Protocol
+
+	- client and server communicates through HTTP Protocol
+	- HTTP protocol contains web specific features
+	- HTTP is responsible for sending a file from source to a destination completely
+	- Client sends HTTPRequest and Server responds a HTTP Response
+	- HTTP Request contains
+		
+		1. URL
+		2. HTTP Method
+		3. Optional Parameters
+		
+	- HTTP Response Contains
+	
+		1. Status Code
+		2. Content Type
+		3. Content
+		
+	- HTTP Methods
+	
+		1. GET
+			
+			- To Fetch data from server
+		2. POST
+		
+			- If you want to give anything to server we use POST
+			
+==> Servlet
+	
+	Step1 - Create a package to write our servlet
+	Step2 - Create Java Class Inside pkg
+	Step3 - Convert Classto servlet by extending HttpServlet class
+	Step4 - Design index.html
+	
+			<form action="home" method="get">
+	
+					Enter First Name : <input type="text" name="fname"/><br/><br/>
+					Enter Last Name : <input type="text" name="lname"/><br/></br>
+					<input type="submit" value="Submit">
+		
+			</form>
+			
+			**Note
+				
+				action - in form tag action is URL of HttpRequest
+				method - in form tag method attribute is HTTP Method
+				First Name & Last Name - are the Optionalparameters for the HTTP Request
+				
+	Step5 - Goto Web.xml (Which is entry Pointofour web app),
+			- In Web.xml two maintags are there
+			
+				1. <servlet></servlet>
+					
+					- It contains two Subtag
+					
+						a. <servlet-name>
+						b. <servlet-class>
+				2. <servlet-mapping></servlet-mapping>
+					
+					- It contains twosubtag
+					
+						a. <servlet-name></servlet-name>
+						b. <url-pattern></url-pattern>
+						
+	Step6 - Implement doGet and doPost method inside servlet 
+			
+			- PrintWriter -is used to print messageto the client browser
+			- HttpServletResponse consist of getWriter method, and itgives us PrintWriter object
+			-  you can use html tags inside print of servlet
+			- but this is only useful if we have only one line to print
+			- writing html code inside servlet is not good practice , so we go for jsp
+						
+			
+			**Notes
+			
+			- by defualt request is get
+			- we can call doPost method from doGet and vice-versa
+			- The name given in the URL pattern is logical name fro the Servlet
+			
+			
+==> sendRedirect()
+
+		- client send request ->web container handover request to servlet-> The servlet process that request -> then servlet has Two Options 
+		
+			1. Redirect response to specific URL
+			2. Dispatch the request to another Component in the application e.g. JSP or JSF
+			
+			1. Redirect response toSpecific URL
+			
+				- to redirect response , we require sendRedirect()method
+				- resp.sendRedirect("https://sushantshinde1012.github.io");
+				
+			2.  Dispatch the request to another Component in the application
+			
+				- to redirect to url which is part of our application, create html file to redirect
+				- resp.sendRedirect("test.html");
+				- sendRedirect is not so much useful because we cannot send data to another page with sendRedirect
+				
+==> getRequestDispatcher()
+
+		- create JSP
+		- In order to dispatch request to another component , we require request dispatcher object
+		- req object gives use request dispatcher
+			
+			RequestDispatcher rd= req.getRequestDispatcher("/output.jsp");
+		- we need to forward thisrequest back to client
+		
+			rd.forward(req, resp);
+			
+	=> accessing redirected data to jsp
+	
+		- To access fullname to output.jsp, we have to send it through redirect using setAttribute() method
+		
+			setAttribute(name,value)
+			
+			req.setAttribute("name", fullName);
+			RequestDispatcher rd= req.getRequestDispatcher("/output.jsp");
+			rd.forward(req, resp); 
+			
+		- Inside JSP to access request attribute we use Scriptlet ( syntax -> <% %> )
+			<%= request.getAttribute("name") %> 
+			
+			<%
+					String fullName = request.getAttribute("name").toString();
+					out.print(fullName);
+			%>
+		- by default request and response object are available inside the scriptlet
+		- we can call getAttribute Method on request object to access 
+			
+			
+==> Writing Java code inside JSP
+
+	1. JSP Declarations
+	
+		- using which we can write java methods inside JSP
+		- Syntax
+		
+			<%!  %>
+			
+		- e.g
+		
+			<%!
+				int calcLength(String string){
+	
+		
+						return string.length();
+				}
+			%>
+		
+	2. JSP Expression
+		- we can wite mathematical expression
+		- Syntax
+			<%=  %>
+		-e.g.
+		
+			<p> The value of 2 * 7 is :  <%= 2 * 7 %></p>
+			
+	3. JSP Scriptlet
+		- we can write java code as is
+		-Syntax 
+			
+			<%  %>
+			
+		- e.g. 
+		
+			<% 
+
+				for(int i=0; i<=10; i++){
+		
+				out.print(i);
+				}
+	
+			%>
+	
+	4. JSP Declarations
+	
+		
+			
+		-  
