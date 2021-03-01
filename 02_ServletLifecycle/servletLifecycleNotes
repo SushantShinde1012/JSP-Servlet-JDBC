@@ -1,0 +1,18 @@
+Life Cycle
+
+	- When clientsends request browser creates two objects HttpRequest and HttpResponse
+	- these are HTTP objects not java objects
+	- container take the request read web.xml, depending upon the URL a servlet object will be loaded to the memory
+	- Now, container will create a servlet object by invoking no-arg constructor,
+	- once the object is created , special method is called which is init() method
+	- Init() method is part of lifecycle method of servlet, which will be called only once in the entire lifecycle of Servlet
+	- Init() is called as soon as servlet object is created
+	- once the init()method is called, then another lifecycle method called i.e. Service() method
+	- Service() method will takes two arguments , The container will convert Http objects into Java Objects
+	- bcoz servlet can only understand java,so container converts Http objects to java objects which is nothing but HttpServletRequest and HttpServletResponse
+	- depending upon Http Method doGet or doPost method is called by service method
+	- once processing  is  done the container will convert those java objects into http objects and send itbackto client
+	- Finally Destroy Method is called 
+	- Destroy method is called just before the shutting down application
+	- once Destroy method is called servlet object is removed from the container
+	- Destroy method is called only once
