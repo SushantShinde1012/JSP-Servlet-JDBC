@@ -1,0 +1,26 @@
+MVC
+
+	- Model View Controller
+	- 
+	Step 1 :- Initially Users sends request from browser
+	Step 2 :- Server takes that request , depending upon URL corresponding controller will be called. 
+				Here Controller is servlet, which hold the entire control flow of entire application.
+				Once controller got the request,process it , 
+				if request expecting additional data,then it will delegate to POJO (Plain Old Java Object), which hold the business logic e.g. querying db, connection to db.
+				 
+	Step 3 :-  The Model takes that request , if request is expecting database records then modeltakes DB connection from Helper class
+				The Helper class is also a model class, which is responsible for getting the database connection.
+				once model gets the database connection,it will query it to DB and gets the DB record and send it back to controller
+	Step 4 :- The controller send it to View component, vie component is nothing but JSP
+
+	-->Main advantage is to seperate business logic from view component
+	
+	
+	___________________________________________________________________________________________________________________________________________________
+	
+	Steps In this Project
+	
+	1. Create a dynamic web project
+	2. Create Servlet TestController.java
+	3. Create JSP test_view.jsp
+	
