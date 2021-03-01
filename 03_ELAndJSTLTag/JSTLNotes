@@ -1,0 +1,57 @@
+==> JSTL
+
+	- JSP Standard Tag Library
+	- It is provided by oracle to carry out common tasks
+	- It Simplify the JSP development
+--> Advantages
+	
+		- Faster Development
+		- Code Reusability
+		- No need to use Scriptlet tag
+--> Types of JSTL Tags
+
+		- Core Tags
+				
+				<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+				
+		- Formatting Tags
+		- SQL Tags
+		- XML Tags
+		- JSTL Functions
+			
+			<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
+		
+--> Installing JSTL Tag Library
+
+		- Download jstl.jar file from the internet
+		- Add the jar file build path of our applictaion
+		- and add jar to bin folder
+		- Reference the library inour JSP
+		
+			<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+			
+--> JSTL Tag
+		
+		- out
+		- set 
+			- set a value to variable
+			- to print variable name we have to use EL
+			
+				<c:out value="${i}"></c:out> 
+			
+		- remove
+			
+			- remove tag is used to remove value of variable we set
+			
+		
+		- url
+		
+--> JSTL ForEach Tag
+
+		-   <c:forEach items="${countries}" var="country">
+			
+				<p> country Name : <c:out value="${country}"></c:out></p>
+			
+			</c:forEach>
+			
+--> JSTL if Tag
